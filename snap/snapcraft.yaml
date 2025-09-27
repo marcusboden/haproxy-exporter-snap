@@ -1,0 +1,37 @@
+name: haproxy-exporter
+title: haproxy_exporter Snap
+summary: A Snap shipping the haproxy_exporter
+description: |
+  This snap packs the [ntp_exporter](https://github.com/easy-monitor/haproxy_exporter):
+  A simple server that scrapes HAProxy stats and exports them via HTTP for Prometheus consumption.
+base: core24
+version: 0.1
+contact: marcus.boden@canonical.com
+issues: https://github.com/marcusboden/haproxy-exporter-snap
+source-code: https://github.com/marcusboden/haproxy-exporter-snap
+website: https://github.com/easy-monitor/haproxy_exporter
+license: Apache-2.0
+
+confinement: strict
+
+apps:
+  exporter:
+    daemon: simple
+    command: bin/wrapper.sh
+    plugs:
+      - network
+      - network-bind
+
+parts:
+  exporter:
+    plugin: go
+    build-snaps: [go/latest/stable]
+    source: https://github.com/easy-monitor/haproxy_exporter
+    source-type: git
+    source-branch: master
+  scripts:
+    plugin: dump
+    source: scripts/
+    source-type: local
+    organize:
+      wrapper.sh: bin/
