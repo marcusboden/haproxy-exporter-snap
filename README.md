@@ -1,6 +1,8 @@
 # haproxy exporter snap
 
-This snap packs the [haproxy_exporter](https://github.com/easy-monitor/haproxy_exporter).
+This snap packs the [haproxy_exporter](https://github.com/prometheus/haproxy_exporter).
+
+If at all possible, the built-in prometheus exporter for haproxy should be used. But if that's not an option, this snap might be helpful.
 
 ## Configuring
 
